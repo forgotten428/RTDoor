@@ -1,7 +1,9 @@
 # RTDoor
 Red Team NetCat Backdoor Service
 
-Operating on port `1333`, change the backdoor.service file manually for more/differrent ports
+Operating on port `1333`, change the backdoor.service file manually for more/differrent ports. 
+
+Side note: In backdoor.service $CHANGEME will be changed when running the setup normally!
 
 ## Script Summary
 The setup is very simple, just run the command:
